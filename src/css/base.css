@@ -4,9 +4,10 @@
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
+  letter-spacing: 0.04em;
 
   color: #2e2f42;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: #fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,4 +29,10 @@ main {
 }
 main:has(.back-link) {
   text-align: center;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
 }
