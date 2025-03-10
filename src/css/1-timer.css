@@ -1,0 +1,23 @@
+#datetime-picker{
+width: 272px;
+height: 40px;
+border-radius: 8px;
+font-family: ;
+}
+
+.timer-start-btn{
+
+}
+
+.timer-countdown{
+    display: flex;
+    flex-direction: row;
+}
+
+.value{
+    display: block;
+}
+
+.label{
+    display: block;
+}
