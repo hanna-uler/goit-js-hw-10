@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page 2</title>
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-CFrPtiMb.css">
+    <title>Timer</title>
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/1-timer-C7t7mgWC.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-D_GkVjVu.css">
   </head>
   <body>
     <header class="header">
@@ -18,42 +19,54 @@
       </a>
       <ul class="nav-list">
         <li class="nav-item">
-          <a class="nav-link active" href="./page-2.html">Page 2</a>
+          <a class="nav-link active" href="../1-timer.html">Timer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
+          <a class="nav-link {=$highlight-curr}" href="../2-snackbar.html"
+            >Snackbar</a
+          >
         </li>
       </ul>
     </nav>
   </div>
 </header>
 
-
     <main>
       <div class="container">
-        <h1 class="main-title">
-          <span class="main-title-gradient">Welcome</span> to page 2
-        </h1>
         <a class="back-link" href="./index.html">Go back</a>
 
+        <h1 class="main-title timer-title">
+          <span class="main-title-gradient">Set</span>your Timer
+        </h1>
+
+        <div class="container timer-container">
+          <div class="start-input-cont">
+            <input type="text" id="datetime-picker" />
+            <button class="timer-start-btn" type="button" data-start>
+              Start
+            </button>
+          </div>
+
+          <div class="timer-countdown">
+            <div class="field">
+              <span class="value" data-days>00</span>
+              <span class="label">Days</span>
+            </div>
+            <div class="field">
+              <span class="value" data-hours>00</span>
+              <span class="label">Hours</span>
+            </div>
+            <div class="field">
+              <span class="value" data-minutes>00</span>
+              <span class="label">Minutes</span>
+            </div>
+            <div class="field">
+              <span class="value" data-seconds>00</span>
+              <span class="label">Seconds</span>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
-
-    <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
-  </div>
-</footer>
-
   </body>
 </html>
