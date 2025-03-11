@@ -1,8 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-const startBtnEl = document.querySelector(".timer-start-btn");
-let userSelectedDate = 0;
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -19,21 +17,67 @@ const options = {
         }
     },
 };
+
 flatpickr("#datetime-picker", options);
 
-startBtnEl.addEventListener("click", foo1);
-function foo1(event) {
-    const intervalId = setInterval(foo2, 1000);
-    function foo2() {
+const startBtnEl = document.querySelector(".timer-start-btn");
+const daysCountEl = document.querySelector("[data-days]");
+const hrsCountEl = document.querySelector("[data-hours]");
+const minCountEl = document.querySelector("[data-minutes]");
+const secCountEl = document.querySelector("[data-seconds]");
+
+let userSelectedDate = 0;
+let timerStartNum = {};
+
+function pad(value) {
+    return String(value).padStart(2, "0");
+};
+
+function updateClockface({days, hours, minutes, seconds}) {
+    daysCountEl.textContent = `${days}`;
+    hrsCountEl.textContent = `${hours}`;
+    minCountEl.textContent = `${minutes}`;
+    secCountEl.textContent = `${seconds}`;
+};
+
+
+startBtnEl.addEventListener("click", setTimer);
+function setTimer(event) {
+    const intervalId = setInterval(getStartNum, 1000);
+    
+};
+
+function getStartNum() {
         // const currentTime = Date.now();
         const timeDifference = userSelectedDate - Date.now();
         if (timeDifference < 0) {
+            clearInterval(intervalId);
             return;
         } else {
-            // console.log(timeDifference);
+            convertMs(timeDifference);
+            updateClockface(timerStartNum);
         }
     }
-}
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Remaining days
+  const days = pad(Math.floor(ms / day));
+  // Remaining hours
+  const hours = pad(Math.floor((ms % day) / hour));
+  // Remaining minutes
+  const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+  // Remaining seconds
+  const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
+  return timerStartNum = {days, hours, minutes, seconds};
+};
+
+
+
 
 // // Mod 10, Les-1 Repo
 // class Timer {
