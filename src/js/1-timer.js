@@ -4,11 +4,13 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 const startBtnEl = document.querySelector(".timer-start-btn");
+const datePickerEl = document.querySelector("#datetime-picker");
 const daysCountEl = document.querySelector("[data-days]");
 const hrsCountEl = document.querySelector("[data-hours]");
 const minCountEl = document.querySelector("[data-minutes]");
 const secCountEl = document.querySelector("[data-seconds]");
 startBtnEl.disabled = true;
+datePickerEl.disabled = false;
 
 let userSelectedDate = 0;
 let timerStartNum = {};
@@ -20,6 +22,7 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
         if (selectedDates[0].getTime() <= Date.now()) {
+            datePickerEl.disabled = false;
             startBtnEl.disabled = true;
             return iziToast.error({
                 title: 'Alert',
@@ -30,8 +33,8 @@ const options = {
 });
         } else {
             userSelectedDate = selectedDates[0].getTime();
+            datePickerEl.disabled = false;
             startBtnEl.disabled = false;
-            console.log(startBtnEl.disabled);
         }
     },
 };
@@ -53,6 +56,7 @@ function updateClockface({days, hours, minutes, seconds}) {
 
 startBtnEl.addEventListener("click", setTimer);
 function setTimer(event) {
+    datePickerEl.disabled = true;
     const intervalId = setInterval(getStartNum, 1000);
     function getStartNum() {
         const timeDifference = userSelectedDate - Date.now();
@@ -61,6 +65,7 @@ function setTimer(event) {
             updateClockface(timerStartNum);
         } else {
             clearInterval(intervalId);
+            datePickerEl.disabled = false;
             return;
         }
     };

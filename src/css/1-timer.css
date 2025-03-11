@@ -25,12 +25,24 @@
 .timer-start-btn {
   width: 75px;
   height: 40px;
+  cursor: pointer;
   border-radius: 8px;
   padding: 8px 16px;
+  background-color: #4e75ff;
+  color: #fff;
+  font-weight: 500;
+  border-style: none;
+}
+
+.timer-start-btn:hover {
+  background-color: #6c8cff;
+}
+
+.timer-start-btn:disabled {
+  cursor: not-allowed;
   background-color: #cfcfcf;
   color: #989898;
   font-weight: 500;
-  /* border-color: #989898; */
   border-style: none;
 }
 
