@@ -9,7 +9,6 @@ const hrsCountEl = document.querySelector("[data-hours]");
 const minCountEl = document.querySelector("[data-minutes]");
 const secCountEl = document.querySelector("[data-seconds]");
 startBtnEl.disabled = true;
-// console.log(startBtnEl.disabled);
 
 let userSelectedDate = 0;
 let timerStartNum = {};
@@ -33,8 +32,6 @@ const options = {
             userSelectedDate = selectedDates[0].getTime();
             startBtnEl.disabled = false;
             console.log(startBtnEl.disabled);
-
-            // startBtnEl.classList.add("is-active");
         }
     },
 };
@@ -57,20 +54,18 @@ function updateClockface({days, hours, minutes, seconds}) {
 startBtnEl.addEventListener("click", setTimer);
 function setTimer(event) {
     const intervalId = setInterval(getStartNum, 1000);
-    
-};
-
-function getStartNum() {
-        // const currentTime = Date.now();
+    function getStartNum() {
         const timeDifference = userSelectedDate - Date.now();
-        if (timeDifference < 0) {
-            clearInterval(intervalId);
-            return;
-        } else {
+        if (timeDifference > 0) {
             convertMs(timeDifference);
             updateClockface(timerStartNum);
+        } else {
+            clearInterval(intervalId);
+            return;
         }
-    }
+    };
+};
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
