@@ -3,6 +3,16 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
+const startBtnEl = document.querySelector(".timer-start-btn");
+const daysCountEl = document.querySelector("[data-days]");
+const hrsCountEl = document.querySelector("[data-hours]");
+const minCountEl = document.querySelector("[data-minutes]");
+const secCountEl = document.querySelector("[data-seconds]");
+startBtnEl.disabled = true;
+// console.log(startBtnEl.disabled);
+
+let userSelectedDate = 0;
+let timerStartNum = {};
 
 const options = {
     enableTime: true,
@@ -10,9 +20,8 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-        // console.log(selectedDates[0]);
         if (selectedDates[0].getTime() <= Date.now()) {
-            startBtnEl.classList.remove("is-active");
+            startBtnEl.disabled = true;
             return iziToast.error({
                 title: 'Alert',
                 message: 'Please choose a date in the future',
@@ -22,21 +31,16 @@ const options = {
 });
         } else {
             userSelectedDate = selectedDates[0].getTime();
-            startBtnEl.classList.add("is-active");
+            startBtnEl.disabled = false;
+            console.log(startBtnEl.disabled);
+
+            // startBtnEl.classList.add("is-active");
         }
     },
 };
 
 flatpickr("#datetime-picker", options);
 
-const startBtnEl = document.querySelector(".timer-start-btn");
-const daysCountEl = document.querySelector("[data-days]");
-const hrsCountEl = document.querySelector("[data-hours]");
-const minCountEl = document.querySelector("[data-minutes]");
-const secCountEl = document.querySelector("[data-seconds]");
-
-let userSelectedDate = 0;
-let timerStartNum = {};
 
 function pad(value) {
     return String(value).padStart(2, "0");
