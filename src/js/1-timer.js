@@ -57,6 +57,7 @@ function updateClockface({days, hours, minutes, seconds}) {
 startBtnEl.addEventListener("click", setTimer);
 function setTimer(event) {
     datePickerEl.disabled = true;
+    startBtnEl.disabled = true;
     const intervalId = setInterval(getStartNum, 1000);
     function getStartNum() {
         const timeDifference = userSelectedDate - Date.now();
