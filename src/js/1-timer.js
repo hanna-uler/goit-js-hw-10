@@ -1,5 +1,8 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 
 const options = {
     enableTime: true,
@@ -10,7 +13,13 @@ const options = {
         // console.log(selectedDates[0]);
         if (selectedDates[0].getTime() <= Date.now()) {
             startBtnEl.classList.remove("is-active");
-            return window.alert("Please choose a date in the future");
+            return iziToast.error({
+                title: 'Alert',
+                message: 'Please choose a date in the future',
+                closeOnClick: true,
+                position: 'topRight',
+                timeout: 3000,
+});
         } else {
             userSelectedDate = selectedDates[0].getTime();
             startBtnEl.classList.add("is-active");
