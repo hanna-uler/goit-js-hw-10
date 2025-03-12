@@ -24,6 +24,19 @@ function onSubmit(event) {
     const delay = formEl.delay.value;
 
     makePromise(chosenBtn, delay)
-        .then(value => console.log(value))
-        .catch(error => console.log(error));
+        .then(value => iziToast.success({
+                title: 'Fullfield',
+                message: value,
+                closeOnClick: true,
+                position: 'topRight',
+            timeout: 3000,
+        }))
+        .catch(error => iziToast.error({
+                title: 'Rejected',
+                message: error,
+                closeOnClick: true,
+                position: 'topRight',
+            timeout: 3000,
+        })
+            );
 };
