@@ -10,9 +10,9 @@ function makePromise(chosenBtn, delay) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if(chosenBtn === "fulfilled") {
-                resolve(`Fulfilled promise in ${delay}ms`);
+                resolve(delay);
             } else {
-                reject(`Rejected promise in ${delay}ms`);
+                reject(delay);
             }
         }, delay);
     });
@@ -27,7 +27,7 @@ function onSubmit(event) {
         .then(value => iziToast.success({
                 theme: 'dark',
                 title: 'OK',
-            message: value,
+            message: `Fulfilled promise in ${value}ms`,
             backgroundColor: '#59A10D',
                 closeOnClick: true,
                 position: 'topRight',
@@ -36,7 +36,7 @@ function onSubmit(event) {
         .catch(error => iziToast.error({
                 theme: 'dark',
                 title: 'Error',
-                message: error,
+                message: `Rejected promise in ${error}ms`,
                 backgroundColor: '#EF4040',
                 closeOnClick: true,
                 position: 'topRight',
