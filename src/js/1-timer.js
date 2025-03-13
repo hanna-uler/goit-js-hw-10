@@ -25,6 +25,8 @@ const options = {
             datePickerEl.disabled = false;
             startBtnEl.disabled = true;
             return iziToast.error({
+                backgroundColor: '#EF4040',
+                theme: 'dark',
                 title: 'Alert',
                 message: 'Please choose a date in the future',
                 closeOnClick: true,
